@@ -1,13 +1,25 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const UsersListItem = () => {
+const UsersListItem = ({ user: { name, attendance, average } }) => {
     return (
         <div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
+            <div>{average}</div>
+            <div>
+                <p>{name}</p>
+                <p>{attendance}</p>
+            </div>
+            <div>X</div>
         </div>
     );
+};
+
+UsersListItem.propTypes = {
+    user: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        attendance: PropTypes.string,
+        average: PropTypes.string.isRequired,
+    }),
 };
 
 export default UsersListItem;

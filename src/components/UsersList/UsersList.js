@@ -1,10 +1,13 @@
 import UsersListItem from 'components/UsersListItem/UsersListItem';
+import { users } from 'data/users';
 import React from 'react';
 
 const UsersList = () => {
     return (
         <div>
-            <UsersListItem />
+            {users.map((user) => {
+                return <UsersListItem key={user.name} user={user} />;
+            })}
         </div>
     );
 };
