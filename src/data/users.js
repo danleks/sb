@@ -28,4 +28,9 @@ export const users = [
         name: 'Paweł Roman',
         average: '2.4',
     },
+    {
+        name: 'Test User',
+        attendance: '100%',
+        average: '5',
+    },
 ];
