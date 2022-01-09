@@ -1,22 +1,22 @@
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import { Average } from 'components/atoms/Average/Average';
-import Button from 'components/atoms/Button/Button';
+import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { DetailStyles, ListItemStyles } from './UsersListItem.styles';
 
-const UsersListItem = ({ user: { name, attendance, average } }) => {
+const UsersListItem = ({ user: { name, attendance, average }, deleteUser }) => {
     return (
-        <ListItemStyles>
+        <ListItemStyles onClick={() => deleteUser(name)}>
             <Average average={+average}>{average}</Average>
             <DetailStyles>
                 <p>{name}</p>
                 <p>attendance: {attendance}</p>
             </DetailStyles>
-            <Button>
+            <DeleteButton>
                 <DeleteIcon />
-            </Button>
+            </DeleteButton>
         </ListItemStyles>
     );
 };

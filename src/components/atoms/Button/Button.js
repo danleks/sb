@@ -1,9 +1,13 @@
-import React from 'react';
+import styled from 'styled-components';
 
-import { ButtonStyles } from './Button.styles';
-
-const Button = ({ children }) => {
-    return <ButtonStyles>{children}</ButtonStyles>;
-};
+const Button = styled.button`
+    padding: 5px 15px;
+    border: none;
+    border-radius: 96px;
+    font-size: ${({ theme }) => theme.fontSize.s};
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.darkGrey};
+    cursor: pointer;
+`;
 
 export default Button;
