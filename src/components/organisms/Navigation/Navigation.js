@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { LogoStyles, NavigationListStyles, NavigationStyles, StyledLink } from './Navigation.styles';
 
@@ -14,12 +13,10 @@ const Navigation = () => {
             </LogoStyles>
             <NavigationListStyles>
                 <li>
-                    <StyledLink to="/add-user">add user</StyledLink>
+                    <StyledLink to="/">users</StyledLink>
                 </li>
                 <li>
-                    <StyledLink exact to="/">
-                        users
-                    </StyledLink>
+                    <StyledLink to="/add-user">add user</StyledLink>
                 </li>
             </NavigationListStyles>
         </NavigationStyles>

@@ -2,9 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavigationStyles = styled.nav`
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 109px;
     height: 100%;
     border-right: 1px solid #dfe2e8;
@@ -32,13 +29,27 @@ export const NavigationListStyles = styled.ul`
     }
 `;
 
-export const StyledLink = styled(NavLink).attrs({ activeClassName: 'active' })`
+export const StyledLink = styled(NavLink)`
+    position: relative;
     font-size: ${({ theme }) => theme.fontSize.m};
     font-weight: 700;
     color: ${({ theme }) => theme.colors.darkGrey};
     text-decoration: none;
 
-    .active {
-        color: red;
+    &.active::after {
+        opacity: 1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -24px;
+        width: 20px;
+        height: 3px;
+        transform: translateY(-50%);
+        background-color: ${({ theme }) => theme.colors.darkPurple};
+        opacity: 0;
+        transition: 0.1s opacity ease-in;
     }
 `;

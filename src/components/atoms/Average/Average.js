@@ -14,6 +14,6 @@ export const Average = styled.div`
         if (average > 4) return theme.colors.success;
         if (average > 3) return theme.colors.warning;
         if (average > 2) return theme.colors.error;
-        return theme.colore.grey;
+        return theme.colors.grey;
     }};
 `;
