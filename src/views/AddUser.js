@@ -26,16 +26,36 @@ const AddUser = () => {
     };
     return (
         <ViewWrapper as="form" onSubmit={handleFormSubmit}>
-            <FormField label="name" name="name" id="name" type="text" value={formValues.name} onChange={handleFormValueChange} />
             <FormField
+                placeholder="Name"
+                label="name"
+                name="name"
+                id="namename"
+                type="text"
+                value={formValues.name}
+                onChange={handleFormValueChange}
+                data-testid="name"
+            />
+            <FormField
+                placeholder="Attendance"
                 label="attendance"
                 name="attendance"
                 id="attendance"
                 type="text"
                 value={formValues.attendance}
                 onChange={handleFormValueChange}
+                data-testid="attendance"
             />
-            <FormField label="average" name="average" id="average" type="text" value={formValues.average} onChange={handleFormValueChange} />
+            <FormField
+                placeholder="Average"
+                label="average"
+                name="average"
+                id="average"
+                type="text"
+                value={formValues.average}
+                onChange={handleFormValueChange}
+                data-testid="average"
+            />
             <Button type="submit">Add</Button>
         </ViewWrapper>
     );
