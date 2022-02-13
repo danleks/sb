@@ -4,13 +4,13 @@ import React from 'react';
 
 import { FormFieldStyles } from './FormField.styles';
 
-const FormField = ({ label, name, id, type = 'text', value, onChange, placeholder }) => {
+const FormField = React.forwardRef(({ label, name, id, type = 'text', value, onChange, placeholder }, ref) => {
     return (
         <FormFieldStyles>
             <Label>{label}</Label>
-            <Input name={name} id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} />
+            <Input ref={ref} name={name} id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} />
         </FormFieldStyles>
     );
-};
+});
 
 export default FormField;
