@@ -5,6 +5,8 @@ export const NavigationStyles = styled.nav`
     width: 109px;
     height: 100%;
     border-right: 1px solid #dfe2e8;
+    grid-column: 1 / 1;
+    grid-row: 1 / 3;
 `;
 
 export const LogoStyles = styled.div`

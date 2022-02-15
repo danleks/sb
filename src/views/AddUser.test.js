@@ -15,6 +15,7 @@ describe('Add User', () => {
         fireEvent.change(screen.getByPlaceholderText('Name'), { target: { value: 'alexTest' } });
         fireEvent.change(screen.getByPlaceholderText('Attendance'), { target: { value: '50' } });
         fireEvent.change(screen.getByPlaceholderText('Average'), { target: { value: '2.3' } });
+        fireEvent.click(screen.getByPlaceholderText('consent'));
         fireEvent.click(screen.getByText('Add'));
         screen.getByText('alexTest');
     });

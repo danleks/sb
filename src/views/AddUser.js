@@ -75,7 +75,7 @@ const AddUser = () => {
                 type="checkbox"
                 value={formValues.consent}
                 onChange={handleFormConsent}
-                data-testid="average"
+                placeholder="consent"
             />
             <Button type="submit">Add</Button>
             <p>{!formValues.consent ? formValues.errorMessage : null}</p>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-    padding: 5px 15px;
+    padding: ${({ isBig }) => (isBig ? '7px 38px' : '7px 20px')};
     border: none;
     border-radius: 96px;
     font-size: ${({ theme }) => theme.fontSize.s};
