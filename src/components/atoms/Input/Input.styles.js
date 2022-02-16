@@ -6,4 +6,10 @@ export const InputStyles = styled.input`
     border-radius: 25px;
     border: none;
     border: 1px solid ${({ theme }) => theme.colors.grey};
+
+    &:not(:placeholder-shown) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        outline: none;
+    }
 `;

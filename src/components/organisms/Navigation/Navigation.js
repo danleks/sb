@@ -13,7 +13,7 @@ const Navigation = () => {
             </LogoStyles>
             <NavigationListStyles>
                 <li>
-                    <StyledLink to="/">users</StyledLink>
+                    <StyledLink to="/group">users</StyledLink>
                 </li>
                 <li>
                     <StyledLink to="/add-user">add user</StyledLink>

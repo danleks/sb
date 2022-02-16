@@ -3,7 +3,7 @@ import { theme } from 'assets/styles/theme';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import { UsersProvider } from 'providers/UsersProvider';
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import AddUser from './AddUser';
@@ -18,8 +18,11 @@ const App = () => {
                 <Wrapper>
                     <UsersProvider>
                         <Routes>
+                            <Route exact path="/" element={<Navigate to="/group" />} />
                             <Route path="/add-user" element={<AddUser />} />
-                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/group" element={<Dashboard />}>
+                                <Route path=":id" />
+                            </Route>
                         </Routes>
                     </UsersProvider>
                 </Wrapper>
