@@ -5,8 +5,10 @@ import { groups } from './data/groups';
 import { students } from './data/students';
 
 export const handlers = [
-    rest.get('/students/search/:id', (req, res, ctx) => {
-        const matchingStudents = students.filter((student) => student.name.toLowerCase().includes(req.params.id.toLowerCase()));
+    rest.post('/students/search', (req, res, ctx) => {
+        const matchingStudents = req.body.phrase
+            ? students.filter((student) => student.name.toLowerCase().includes(req.body.phrase.toLowerCase()))
+            : [];
         return res(
             ctx.status(200),
             ctx.json({
@@ -15,6 +17,7 @@ export const handlers = [
         );
     }),
     rest.get('/students/:id', (req, res, ctx) => {
+        console.log(req.params.id);
         if (req.params.id) {
             const matchingStudents = students.filter((student) => student.group === req.params.id);
             return res(

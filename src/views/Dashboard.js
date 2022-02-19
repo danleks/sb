@@ -1,40 +1,29 @@
-import axios from 'axios';
-import UsersList from 'components/organisms/UsersList/UsersList';
-import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import UsersList from 'components/organisms/StudentsList/StudentsList';
+import useStudents from 'hooks/useStudents';
+import React from 'react';
+import { NavLink, Navigate, useParams } from 'react-router-dom';
 
 import { DashboardStyles } from './Dashboard.styles';
 
 const Dashboard = () => {
-    const [students, setStudents] = useState([]);
-    const [groups, setGroups] = useState([]);
     const { id } = useParams();
+    const { groups } = useStudents();
 
-    useEffect(() => {
-        axios.get('/groups').then((data) => setGroups(data.data.groups));
-    }, []);
+    if (!id && groups.length > 0) return <Navigate to={`/group/${groups[0]}`} />;
 
-    useEffect(() => {
-        axios
-            .get(`/students/${id || groups[0]}`)
-            .then((data) => setStudents(data.data.students))
-            .catch((e) => console.log(e));
-    }, [id, groups]);
     return (
         <DashboardStyles>
             <nav>
                 <span>Group {id || groups[0]}</span>
                 <ul>
                     {groups.map((group) => (
-                        <li>
-                            <NavLink key={group} to={`/group/${group}`}>
-                                {group}
-                            </NavLink>
+                        <li key={group}>
+                            <NavLink to={`/group/${group}`}>{group}</NavLink>
                         </li>
                     ))}
                 </ul>
             </nav>
-            <UsersList students={students} />
+            <UsersList />
         </DashboardStyles>
     );
 };
