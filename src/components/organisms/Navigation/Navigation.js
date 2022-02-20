@@ -15,9 +15,9 @@ const Navigation = () => {
                 <li>
                     <StyledLink to="/group">users</StyledLink>
                 </li>
-                <li>
+                {/* <li>
                     <StyledLink to="/add-user">add user</StyledLink>
-                </li>
+                </li> */}
             </NavigationListStyles>
         </NavigationStyles>
     );

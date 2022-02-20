@@ -17,7 +17,6 @@ export const handlers = [
         );
     }),
     rest.get('/students/:id', (req, res, ctx) => {
-        console.log(req.params.id);
         if (req.params.id) {
             const matchingStudents = students.filter((student) => student.group === req.params.id);
             return res(

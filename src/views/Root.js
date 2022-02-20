@@ -19,7 +19,7 @@ const App = () => {
                     <UsersProvider>
                         <Routes>
                             <Route exact path="/" element={<Navigate to="/group" />} />
-                            <Route path="/add-user" element={<AddUser />} />
+                            {/* <Route path="/add-user" element={<AddUser />} /> */}
                             <Route path="/group" element={<Dashboard />}>
                                 <Route path=":id" />
                             </Route>

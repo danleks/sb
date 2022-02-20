@@ -59,15 +59,16 @@ export const SeachBarResults = styled.ul`
     overflow-y: auto;
     z-index: 1;
     box-shadow: -2px 4px 10px 0px #737c8e17;
+`;
 
-    li {
-        color: ${({ theme }) => theme.colors.darkGrey};
-        font-size: ${({ theme }) => theme.fontSize.l};
-        font-weight: 700;
-        padding: 10px 26px;
+export const ResultItem = styled.li`
+    color: ${({ theme }) => theme.colors.darkGrey};
+    font-size: ${({ theme }) => theme.fontSize.l};
+    font-weight: 700;
+    padding: 10px 26px;
+    background-color: ${({ isHighlighted }) => (isHighlighted ? '#eceff6' : '')};
 
-        &:hover {
-            background-color: #eceff6;
-        }
+    &:hover {
+        background-color: #eceff6;
     }
 `;

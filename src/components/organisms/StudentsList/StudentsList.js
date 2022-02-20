@@ -1,15 +1,23 @@
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import useStudents from 'hooks/useStudents';
 import { UsersContext } from 'providers/UsersProvider';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ListStyles, StudentsWrapper } from './StudentsList.styles';
 
 const StudentsList = () => {
+    const [students, setStudents] = useState([]);
     const { id } = useParams();
     const { isLoading } = useContext(UsersContext);
-    const { students } = useStudents({ groupId: id });
+    const { getStudents } = useStudents();
+
+    useEffect(() => {
+        (async () => {
+            const students = await getStudents(id);
+            setStudents(students);
+        })();
+    }, [getStudents, id]);
 
     return (
         <>

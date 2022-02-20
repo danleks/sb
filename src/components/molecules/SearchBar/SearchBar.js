@@ -1,25 +1,24 @@
 import Input from 'components/atoms/Input/Input';
+import { useCombobox } from 'downshift';
 import useStudents from 'hooks/useStudents';
 import { debounce } from 'lodash';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { SeachBarResults, SeachBarStyles, SearchBarContent, SearchBarStatus } from './SearchBar.styles';
+import { ResultItem, SeachBarResults, SeachBarStyles, SearchBarContent, SearchBarStatus } from './SearchBar.styles';
 
 const SearchBar = () => {
-    const [inputVal, setInputVal] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const { findStudents } = useStudents();
 
-    const getSearchResult = useCallback(async () => {
-        const { students } = await findStudents(inputVal);
-        console.log(students);
+    const getSearchResult = async ({ inputValue }) => {
+        const { students } = await findStudents(inputValue);
         setSearchResult(students);
-    }, [inputVal]);
+    };
 
-    useEffect(() => {
-        if (!inputVal) return;
-        getSearchResult();
-    }, [getSearchResult, inputVal]);
+    const { isOpen, getMenuProps, getInputProps, getComboboxProps, highlightedIndex, getItemProps } = useCombobox({
+        items: searchResult,
+        onInputValueChange: getSearchResult,
+    });
 
     return (
         <SeachBarStyles>
@@ -27,15 +26,16 @@ const SearchBar = () => {
                 <span>Logged as:</span>
                 <span>Teacher</span>
             </SearchBarStatus>
-            <SearchBarContent>
-                <Input onChange={(e) => setInputVal(e.target.value)} value={inputVal} placeholder="find student" />
-                {searchResult.length > 0 ? (
-                    <SeachBarResults>
-                        {searchResult.map((res) => (
-                            <li key={res.id}>{res.name}</li>
+            <SearchBarContent {...getComboboxProps()}>
+                <Input {...getInputProps()} placeholder="find student" />
+                <SeachBarResults {...getMenuProps()}>
+                    {isOpen &&
+                        searchResult.map((item, index) => (
+                            <ResultItem isHighlighted={highlightedIndex === index} {...getItemProps({ item, index })} key={index}>
+                                {item.name}
+                            </ResultItem>
                         ))}
-                    </SeachBarResults>
-                ) : null}
+                </SeachBarResults>
             </SearchBarContent>
         </SeachBarStyles>
     );

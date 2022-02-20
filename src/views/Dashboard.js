@@ -1,13 +1,21 @@
 import UsersList from 'components/organisms/StudentsList/StudentsList';
 import useStudents from 'hooks/useStudents';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Navigate, useParams } from 'react-router-dom';
 
 import { DashboardStyles } from './Dashboard.styles';
 
 const Dashboard = () => {
+    const [groups, setGroups] = useState([]);
     const { id } = useParams();
-    const { groups } = useStudents();
+    const { getGroups } = useStudents();
+
+    useEffect(() => {
+        (async () => {
+            const groups = await getGroups();
+            setGroups(groups);
+        })();
+    }, [getGroups]);
 
     if (!id && groups.length > 0) return <Navigate to={`/group/${groups[0]}`} />;
 
